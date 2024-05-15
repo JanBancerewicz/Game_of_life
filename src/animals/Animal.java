@@ -65,9 +65,12 @@ public class Animal extends Organism {
         System.out.println(this.getOrganismTypeName() + " action");
         this.setAge(this.getAge() + 1);
 
-        Point newpos = this.getParent().getRandomNearPosition(this.getPosition(), 1, 0);
+//        System.out.println("currpos: "+this.getPosition().getCoords());
+        Point newpos = this.getParent().getRandomNearPosition(new Point(this.getPosition()), 1, 0);
+//        System.out.println("newpos: "+newpos.getCoords());
+
         if (this.getPosition().getX() == newpos.getX() && this.getPosition().getY() == newpos.getY()) {
-            if (DETAILED_LOGGING) { System.out.println("No place to move"); }
+            if (DETAILED_LOGGING) { System.out.println("There is no place to move"); }
         } else {
             if (this.getParent().getOrganism(newpos) != null) {
                 if (this.getParent().getOrganism(newpos).getOrganismType() == this.getOrganismType()) {
@@ -83,7 +86,7 @@ public class Animal extends Organism {
 
     @Override
     public void reproduction() {
-        Point p = this.getParent().getRandomNearPosition(this.getPosition(), 0, 0);
+        Point p = this.getParent().getRandomNearPosition(new Point(this.getPosition()), 0, 0);
         if (p.getX() == this.getPosition().getX() && p.getY() == this.getPosition().getY()) {
             if (DETAILED_LOGGING) { System.out.println("No place to reproduce"); }
             // Nothing will appear because there is no space

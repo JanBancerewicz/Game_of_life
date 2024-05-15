@@ -20,12 +20,20 @@ public class Human extends Animal {
                     char ch2 = scanner.next().charAt(0);
                     switch (ch2) {
                         case KEY_ARROW_RIGHT:
+                        case KEY_ARROW_right:
+                            System.out.println("GOOD INPUT");
                             return 1;
                         case KEY_ARROW_UP:
+                        case KEY_ARROW_up:
+                            System.out.println("GOOD INPUT");
                             return 2;
                         case KEY_ARROW_LEFT:
+                        case KEY_ARROW_left:
+                            System.out.println("GOOD INPUT");
                             return 3;
                         case KEY_ARROW_DOWN:
+                        case KEY_ARROW_down:
+                            System.out.println("GOOD INPUT");
                             return 4;
                         default:
                             System.out.println("INVALID INPUT");
@@ -33,6 +41,23 @@ public class Human extends Animal {
                     }
                 default:
                     switch (ch1) {
+                        case KEY_ARROW_RIGHT:
+                        case KEY_ARROW_right:
+//                            System.out.println("Prawo");
+                            return 4;
+                        case KEY_ARROW_UP:
+                        case KEY_ARROW_up:
+//                            System.out.println("GORA");
+                            return 3;
+                        case KEY_ARROW_LEFT:
+                        case KEY_ARROW_left:
+//                            System.out.println("LEWO");
+                            return 2;
+                        case KEY_ARROW_DOWN:
+                        case KEY_ARROW_down:
+//                            System.out.println("DOL");
+                            return 1;
+
                         case KEY_F:
                         case KEY_f:
                             if (countdown <= 0) {
@@ -109,7 +134,7 @@ public class Human extends Animal {
         ultimate();
 
         if (dir != 0) {
-            Point newPosition = getParent().mapPoint(getPosition(), dir);
+            Point newPosition = getParent().mapPoint(new Point(getPosition()), dir);
             if (getParent().isInBounds(newPosition.getX(), newPosition.getY()) && !(getPosition().getX() == newPosition.getX() && getPosition().getY() == newPosition.getY())) {
                 if (getParent().getOrganism(newPosition) == null) {
                     move(newPosition);
@@ -117,7 +142,7 @@ public class Human extends Animal {
                     movementAction(newPosition);
                 }
             } else {
-                System.out.println("No place to move");
+                System.out.println("No place to move :(");
                 this.getParent().getLogger().addLog("Human has no place to move");
             }
         } else {

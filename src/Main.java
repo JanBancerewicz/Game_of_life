@@ -12,7 +12,7 @@ public class Main {
 //        System.out.println("Hello world1!");
 
         World world = new World(); // world declaration
-        world.drawWorld();
+//        world.drawWorld();
 
 
 //        System.out.println("Hello world2!");
@@ -22,7 +22,8 @@ public class Main {
 
         world.drawWorld();
 //        java.util.Scanner scanner = new java.util.Scanner(System.in); //todo never used
-        new java.util.Scanner(System.in).nextLine(); // stop until user input
+
+//        new java.util.Scanner(System.in).nextLine(); // stop until user input
 
         while (world.getTurn() > -1 && !world.getInfo().isEmpty()) {
             if (!DETAILED_LOGGING) {
@@ -38,6 +39,7 @@ public class Main {
             new java.util.Scanner(System.in).nextLine(); // stop until user input
         }
 
+        System.out.println("Hello world3!");
 
 
 

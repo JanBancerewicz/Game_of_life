@@ -1,1 +1,4 @@
 	Tura: 1
+Wolf collides with Guarana at (2, 1)
+Guarana collides with Wolf at (2, 1)
+Wolf eats Guarana

@@ -12,7 +12,7 @@ public class Antelope extends Animal {
         System.out.println("Antelope action");
         setAge(getAge() + 1);
 
-        Point newpos = getParent().getRandomNearPosition(getPosition(), 2, 1);
+        Point newpos = getParent().getRandomNearPosition(new Point(getPosition()), 2, 1);
         if (getPosition().equals(newpos)) {
             if (DETAILED_LOGGING) {
                 System.out.println("No place to move");

@@ -22,10 +22,25 @@ public class Constants {
     
     // Constants for key inputs
     public static final int KEY_ARROW_1 = 224;
-    public static final int KEY_ARROW_UP = 72;
-    public static final int KEY_ARROW_DOWN = 80;
-    public static final int KEY_ARROW_LEFT = 75;
-    public static final int KEY_ARROW_RIGHT = 77;
+
+    public static final int KEY_ARROW_Q = 81;
+    public static final int KEY_ARROW_q = 113;
+
+    public static final int KEY_ARROW_E = 69;
+    public static final int KEY_ARROW_e = 101;
+
+    public static final int KEY_ARROW_UP = 87;
+    public static final int KEY_ARROW_up = 119;
+//    public static final int KEY_ARROW_UP = 72;
+    public static final int KEY_ARROW_DOWN = 83;
+    public static final int KEY_ARROW_down = 115;
+//    public static final int KEY_ARROW_DOWN = 80;
+    public static final int KEY_ARROW_LEFT = 65;
+    public static final int KEY_ARROW_left = 97;
+//    public static final int KEY_ARROW_LEFT = 75;
+    public static final int KEY_ARROW_RIGHT = 68;
+    public static final int KEY_ARROW_right = 100;
+//    public static final int KEY_ARROW_RIGHT = 77;
     public static final int KEY_F = 70;
     public static final int KEY_f = 102;
     public static final int KEY_L = 76;

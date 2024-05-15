@@ -103,30 +103,32 @@ public class World {
     }
 
     public Point mapPoint(Point p, int direction) {
+        Point newPoint = new Point(p.getX(), p.getY());
         switch (direction) {
             case 1: // right
                 if (isInBounds(p.getX() + 1, p.getY())) {
-                    p.setX(p.getX() + 1);
+                    newPoint.setX(p.getX() + 1);
                 }
                 break;
             case 2: // down
                 if (isInBounds(p.getX(), p.getY() - 1)) {
-                    p.setY(p.getY() - 1);
+                    newPoint.setY(p.getY() - 1);
                 }
                 break;
             case 3: // left
                 if (isInBounds(p.getX() - 1, p.getY())) {
-                    p.setX(p.getX() - 1);
+                    newPoint.setX(p.getX() - 1);
                 }
+
                 break;
             case 4: // up
                 if (isInBounds(p.getX(), p.getY() + 1)) {
-                    p.setY(p.getY() + 1);
+                    newPoint.setY(p.getY() + 1);
                 }
                 break;
         }
 
-        return p;
+        return newPoint;
     }
 
     public Point getRandomNearPosition(Point position, int allowCollision, int doubleMove) {
