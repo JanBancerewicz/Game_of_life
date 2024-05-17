@@ -2,6 +2,7 @@ package game;
 
 public class Constants {
     // Constants for size of the grid
+    public static final boolean IS_HEX=false;
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 20;
 
