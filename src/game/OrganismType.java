@@ -8,9 +8,9 @@ public enum OrganismType {
         SOSNOWSKIHOGWEED, //$
         WOLF, //W
         SHEEP, //S
-        FOX, //F
         TURTLE, //T
         ANTELOPE, //A
+        FOX, //F
         HUMAN //H
 
 }

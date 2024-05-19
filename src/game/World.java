@@ -22,6 +22,10 @@ public class World {
     private Organism[][] tab = new Organism[SIZE_X][SIZE_Y]; // organizmy na planszy
     private ArrayList<Organism> info = new ArrayList<Organism>(); // (posortowana) lista organizmow
     private Logger logger;
+    public boolean isGameOver = false;
+
+    public int cooldown = 0;
+
 
     public World() {
         this.initializeMap();
@@ -49,7 +53,7 @@ public class World {
         this.tab[p.getX()][p.getY()] = o;
     }
 
-    public int playTurn() {
+    public int playTurn(MyFrame frame) {
         this.tabSort();
 
         int n = this.info.size();
@@ -65,16 +69,22 @@ public class World {
         // human action should take movement direction (wasd) + optionally skill (f)
 
         if (SINGLE_MAP) {
-            this.drawWorld();
+            this.drawWorld(frame);
         }
         while (target < n) {
+            if(this.info.get(target).getOrganismType() == OrganismType.HUMAN){
+                Human man =(Human)this.info.get(target);
+                man.humandir=frame.humandir;
+                frame.humandir=0; // reset direction
+                man.setCountdown(frame.world.cooldown);
+            }
             this.info.get(target).action();
             int newN = this.info.size();
             if (newN < n) {
                 n = newN;
             }
             if (!SINGLE_MAP) {
-                this.drawWorld();
+                this.drawWorld(frame);
             }
             if (DETAILED_LOGGING) {
                 System.out.println("Rozmiar: " + this.info.size() + " faktyczny: " + n);
@@ -93,6 +103,27 @@ public class World {
                     System.out.print(tab[i][j].getAscii());
                 }
                 System.out.print(" ");
+            }
+            System.out.println();
+        }
+
+
+    }
+    public void drawWorld(MyFrame frame) {
+        int counter=0;
+        for (int j = 0; j < SIZE_X; j++) {
+            for (int i = 0; i < SIZE_Y; i++) {
+                if (tab[i][j] == null) {
+                    System.out.print("-");
+                    frame.tiles.get(counter).setImg(11);
+
+                } else {
+                    System.out.print(tab[i][j].getAscii());
+//                    System.out.print(counter);
+                    frame.tiles.get(counter).setImg(tab[i][j].getOrganismType().ordinal());
+                }
+                System.out.print(" ");
+                counter++;
             }
             System.out.println();
         }
@@ -286,8 +317,9 @@ public class World {
 
     public boolean saveToFile() {
         try (FileWriter fileWriter = new FileWriter("save.txt")) {
+            fileWriter.write(this.cooldown + " ");
             for (Organism organism : info) {
-                fileWriter.write(organism.getOrganismType() + " " + organism.getPosition().getX() + " " + organism.getPosition().getY() + " ");
+                fileWriter.write(organism.getOrganismType().ordinal() + " " + organism.getPosition().getX() + " " + organism.getPosition().getY() + " ");
             }
             return true;
         } catch (IOException e) {
@@ -300,12 +332,15 @@ public class World {
         try (Scanner scanner = new Scanner(new File("save.txt"))) {
             initializeMap();
             info.clear();
+            cooldown= scanner.nextInt();
+            System.out.println("Cooldown: " + cooldown);
             while (scanner.hasNextInt()) {
                 int type = scanner.nextInt();
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
                 generateOrganism(new Point(x, y), OrganismType.values()[type]);
                 getOrganism(new Point(x, y)).setParent(this);
+                System.out.println("Loaded " + OrganismType.values()[type] + " at " + x + " " + y);
             }
             return true;
         } catch (IOException e) {
@@ -318,6 +353,8 @@ public class World {
         try (Scanner scanner = new Scanner(new File("savedefault.txt"))) {
             initializeMap();
             info.clear();
+            cooldown= scanner.nextInt();
+            System.out.println("Cooldown: " + cooldown);
             while (scanner.hasNextInt()) {
                 int type = scanner.nextInt();
                 int x = scanner.nextInt();

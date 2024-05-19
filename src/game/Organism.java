@@ -11,6 +11,7 @@ public abstract class Organism {
     private int age;
     private World parent;
 
+
     public Organism(Point position, char ascii, OrganismType organismType, int strength, int initiative) {
         this.position = position;
         this.ascii = ascii;
