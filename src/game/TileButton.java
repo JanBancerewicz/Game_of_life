@@ -79,10 +79,10 @@ public class TileButton extends JButton {
 
     }
 
-    void clickAction(int newIndex)
+    Point clickAction(int newIndex)
 
     {
         this.setImg(newIndex);
-        System.out.println("Button("+posX +", "+ posY+") clicked with itemIndex: "+newIndex);
+        return new Point(posY, posX); //todo check if correct
     }
 }
