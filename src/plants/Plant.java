@@ -4,7 +4,7 @@ import game.*;
 import static game.Constants.*;
 
 public class Plant extends Organism {
-    public Plant(Point position, char ascii, OrganismType organismType, int strength, int initiative) {
+    Plant(Point position, char ascii, OrganismType organismType, int strength, int initiative) {
         super(position, ascii, organismType, strength, initiative);
     }
 

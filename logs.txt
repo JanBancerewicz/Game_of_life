@@ -1,4 +1,42 @@
 	Tura: 1
-Wolf collides with Guarana at (2, 1)
-Guarana collides with Wolf at (2, 1)
-Wolf eats Guarana
+Sheep reproduces at (9, 8)
+Sheep reproduces at (9, 9)
+Grass reproduces at (0, 1)
+Sosnowski Hogweed poisons everything around (2, 5)
+	Tura: 2
+Guarana reproduces at (1, 1)
+Guarana reproduces at (1, 0)
+Milkweed reproduces at (5, 5)
+Sosnowski Hogweed poisons everything around (2, 5)
+	Tura: 3
+Wolf collides with Nightshade Berries at (3, 1)
+Nightshade Berries collides with Wolf at (3, 1)
+Wolf is eaten by Nightshade Berries
+Sheep reproduces at (10, 10)
+Human collides with Guarana at (2, 2)
+Guarana collides with Human at (2, 2)
+Human eats Guarana
+Milkweed reproduces at (6, 4)
+Sosnowski Hogweed poisons everything around (2, 5)
+Guarana reproduces at (1, 2)
+Guarana reproduces at (2, 0)
+Sheep reproduces at (10, 9)
+	Tura: 4
+Sheep reproduces at (6, 7)
+Ultimate active, human burns everything around him
+Sheep reproduces at (8, 10)
+Sosnowski Hogweed reproduces at (1, 5)
+Sosnowski Hogweed poisons everything around (2, 5)
+Milkweed reproduces at (6, 6)
+Sheep collides with Milkweed at (6, 6)
+Milkweed collides with Sheep at (6, 6)
+Sheep eats Milkweed
+	Tura: 5
+Sheep reproduces at (9, 9)
+Ultimate active, human burns everything around him
+Sheep reproduces at (7, 9)
+Sheep reproduces at (8, 8)
+Sheep reproduces at (6, 8)
+Sosnowski Hogweed poisons everything around (2, 5)
+Sosnowski Hogweed poisons everything around (1, 5)
+Sheep reproduces at (7, 8)
