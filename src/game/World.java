@@ -19,10 +19,19 @@ public class World {
 
 
     private int turn;
-    private Organism[][] tab = new Organism[SIZE_X][SIZE_Y]; // organizmy na planszy
-    private ArrayList<Organism> info = new ArrayList<Organism>(); // (posortowana) lista organizmow
-    private Logger logger;
+    private final Organism[][] tab = new Organism[SIZE_X][SIZE_Y]; // organizmy na planszy
+    private final ArrayList<Organism> info = new ArrayList<Organism>(); // (posortowana) lista organizmow
+    private final Logger logger;
     public boolean isGameOver = false;
+
+    public boolean getIsGameOver(){
+        return isGameOver;
+    }
+
+    public void setisGameOver(boolean igo){
+        this.isGameOver = igo;
+    }
+
 
     public int cooldown = 0;
 
@@ -74,9 +83,9 @@ public class World {
         while (target < n) {
             if(this.info.get(target).getOrganismType() == OrganismType.HUMAN){
                 Human man =(Human)this.info.get(target);
-                man.humandir=frame.humandir;
-                frame.humandir=0; // reset direction
-                man.setCountdown(frame.world.cooldown);
+                man.setHumandir(frame.getHumandir());
+                frame.setHumandir(0); // reset direction
+                man.setCountdown(frame.getWorld().cooldown);
             }
             this.info.get(target).action();
             int newN = this.info.size();
@@ -111,8 +120,8 @@ public class World {
     }
     public void drawWorld(MyFrame frame) {
         int counter=0;
-        for (int j = 0; j < SIZE_X; j++) {
-            for (int i = 0; i < SIZE_Y; i++) {
+        for (int i = 0; i < SIZE_X; i++) {
+            for (int j = 0; j < SIZE_Y; j++) {
                 if (tab[i][j] == null) {
                     System.out.print("-");
                     frame.tiles.get(counter).setImg(11);
@@ -157,16 +166,39 @@ public class World {
                     newPoint.setY(p.getY() + 1);
                 }
                 break;
+            case 5: // q
+                if(IS_HEX){
+                    if (isInBounds(p.getX() - 1, p.getY() - 1)) {
+                        newPoint.setY(p.getY() - 1);
+                        newPoint.setX(p.getX() - 1);
+                    }
+                }
+                break;
+            case 6: // e
+                if(IS_HEX){
+                    if (isInBounds(p.getX() + 1, p.getY() + 1)) {
+                        newPoint.setY(p.getY() + 1);
+                        newPoint.setX(p.getX() + 1);
+                    }
+                }
+                break;
         }
-
         return newPoint;
     }
 
     public Point getRandomNearPosition(Point position, int allowCollision, int doubleMove) {
-        Point[] positions = new Point[4];
-        int positionsCount = 0;
+        Point[] positions;
+        if(IS_HEX){
+            positions = new Point[6];
+        }else{
+            positions = new Point[4];
+        }
 
-        for (int i = 1; i <= 4; i++) {
+        int positionsCount = 0;
+        int maxsize=4;
+        if(IS_HEX){maxsize=6;}
+
+        for (int i = 1; i <= maxsize; i++) {
             Point newPosition = (doubleMove != 0 ? mapPoint(mapPoint(position, i), i) : mapPoint(position, i));
             if (isInBounds(newPosition.getX(), newPosition.getY())) {
                 if (!(position.getX() == newPosition.getX() && position.getY() == newPosition.getY())) {
@@ -189,10 +221,18 @@ public class World {
     }
 
     public Point getRandomNearFriendlyPosition(Point position) {
-        Point[] positions = new Point[4];
-        int positionsCount = 0;
+        Point[] positions;
+        if(IS_HEX){
+            positions = new Point[6];
+        }else{
+            positions = new Point[4];
+        }
 
-        for (int i = 1; i <= 4; i++) {
+        int positionsCount = 0;
+        int maxsize=4;
+        if(IS_HEX){maxsize=6;}
+
+        for (int i = 1; i <= maxsize; i++) {
             Point newPosition = mapPoint(position, i);
             if (isInBounds(newPosition.getX(), newPosition.getY())) {
                 if (!(position.getX() == newPosition.getX() && position.getY() == newPosition.getY())) {
@@ -220,10 +260,18 @@ public class World {
     }
 
     public void destroyEverythingAround(Point position, boolean animalsOnly) {
-        Point[] positions = new Point[4];
-        int positionsCount = 0;
+        Point[] positions;
+        if(IS_HEX){
+            positions = new Point[6];
+        }else{
+            positions = new Point[4];
+        }
 
-        for (int i = 1; i <= 4; i++) {
+        int positionsCount = 0;
+        int maxsize=4;
+        if(IS_HEX){maxsize=6;}
+
+        for (int i = 1; i <= maxsize; i++) {
             Point newPosition = mapPoint(position, i);
             if (isInBounds(newPosition.getX(), newPosition.getY())) {
                 if (!(position.getX() == newPosition.getX() && position.getY() == newPosition.getY())) {

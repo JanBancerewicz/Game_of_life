@@ -2,14 +2,16 @@ package game;
 
 import javax.swing.*;
 
+import static game.Constants.IS_HEX;
+import static game.Constants.SIZE_X;
 
-public class TileButton extends JButton {
 
-    public int itemIndex = 11;
-    public int posX=0;
-    public int posY=0;
+class TileButton extends JButton {
 
-    TileButton() {
+    private int posX=0;
+    private int posY=0;
+
+    private TileButton() {
         ImageIcon icon = new ImageIcon("img/res/empty.jpg");
         this.setIcon(icon);
         this.setBounds(0, 0, 40, 40);
@@ -20,14 +22,20 @@ public class TileButton extends JButton {
 
     TileButton(int x, int y)
     {
-        this();
+        this(); // call default constructor (for design)
         this.posX = x;
         this.posY = y;
-        this.setBounds(x*40 +1, y*40 +1, 40, 40);
+        if(IS_HEX){
+            int size=SIZE_X;
+            this.setBounds(40*(size-y-1) + x*40 +1, 20*x + y*20 +1, 40, 40);
+        }else{
+            this.setBounds(x*40 +1, y*40 +1, 40, 40);
+        }
+
     }
 
     void setImg(int imgIndex) {
-        String imgPath = "img/res/empty.jpg";
+        String imgPath = IS_HEX ? "img/res/emptyhex.jpg" :"img/res/empty.jpg";
 
         switch(imgIndex)
         {
@@ -65,10 +73,10 @@ public class TileButton extends JButton {
                 imgPath = "img/res/human.jpg";
                 break;
             case 11:
-                imgPath = "img/res/empty.jpg";
+                imgPath = IS_HEX ? "img/res/emptyhex.jpg": "img/res/empty.jpg";
                 break;
             default:
-                imgPath = "img/res/empty.jpg";
+                imgPath = IS_HEX ? "img/res/emptyhex.jpg":  "img/res/empty.jpg";
                 break;
         }
 
@@ -83,6 +91,6 @@ public class TileButton extends JButton {
 
     {
         this.setImg(newIndex);
-        return new Point(posY, posX); //todo check if correct
+        return new Point(posX, posY); //todo check if correct
     }
 }

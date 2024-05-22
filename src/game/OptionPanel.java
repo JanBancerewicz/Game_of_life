@@ -5,24 +5,27 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.jar.JarEntry;
 
+import static game.Constants.IS_HEX;
+
 public class OptionPanel extends JPanel {
 
-    MyFrame myframe;
+    private MyFrame myframe;
 
-    JTextArea loggingSpace;
+    private final JTextArea loggingSpace;
 
-    JButton b1, b5, b6, b7, b8, b9, b10;
+    private final JButton b1;
+    private final JButton b5;
+    private final JButton b6;
+    private final JButton b7;
+    private final JButton b8;
+    private final JButton b9;
+    private final JButton b10;
 
-    public OptionPanel() {
+    private OptionPanel() {
         this.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 0));
         this.setBackground(new Color(100, 100, 100));
         this.setBounds(860, 0, 360, 860);
 
-
-//        JLabel label = new JLabel();
-//        label.setText("hii, this is a label");
-//        label.setVerticalAlignment(JLabel.TOP);
-//        label.setHorizontalAlignment(JLabel.LEFT);
 
         b1 = ButtonFactory("Wykonaj turę", 0, 50, 180, 50);
         b1.setEnabled(false);
@@ -36,9 +39,10 @@ public class OptionPanel extends JPanel {
             myframe.requestFocus();
             b1.setEnabled(false);
             startTurn();
-            myframe.world.drawWorld(myframe);
+            myframe.getWorld().drawWorld(myframe);
         });
         this.add(b1);
+
         JButton b2 = ButtonFactory("Wczytaj", 120, 0, 180, 50);
         b2.addActionListener(e -> {
             myframe.requestFocus();
@@ -58,36 +62,34 @@ public class OptionPanel extends JPanel {
         });
         this.add(b4);
         b5.addActionListener(e -> {
-
-            directHuman(2);
+            int where = IS_HEX ? 4 : 3;
+            directHuman(where); //A
         });
         this.add(b5);
         b6.addActionListener(e -> {
-
-            directHuman(3);
+            int where = IS_HEX ? 5 : 2;
+            directHuman(where); //W
         });
         this.add(b6);
         b7.addActionListener(e -> {
-
-            directHuman(1);
+            int where = IS_HEX ? 6 : 4;
+            directHuman(where); //S
         });
         this.add(b7);
         b8.addActionListener(e -> {
-
-            directHuman(4);
+            directHuman(1); //D
         });
         this.add(b8);
         b9.addActionListener(e -> {
-
-            directHuman(5);
+            directHuman(3); //Q
         });
-        b9.setEnabled(false); //todo if hex
+        if(!IS_HEX){b9.setEnabled(false);}
         this.add(b9);
         b10.addActionListener(e -> {
 
-            directHuman(6);
+            directHuman(2); //E
         });
-        b10.setEnabled(false);
+        if(!IS_HEX){b10.setEnabled(false);}
         this.add(b10);
 
 
@@ -106,7 +108,7 @@ public class OptionPanel extends JPanel {
     }
 
 
-    JButton ButtonFactory(String text, int x, int y, int width, int height) {
+    private JButton ButtonFactory(String text, int x, int y, int width, int height) {
         JButton button = new JButton();
         button.setText(text);
 //        button.setBounds(x, y, width, height);
@@ -115,7 +117,7 @@ public class OptionPanel extends JPanel {
         return button;
     }
 
-    JPanel LoggerFactory(JTextArea textArea) {
+    private JPanel LoggerFactory(JTextArea textArea) {
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(5,5,5,5));
         panel.setLayout(new BorderLayout(0,0));
@@ -134,9 +136,9 @@ public class OptionPanel extends JPanel {
     }
 
 
-    void saveGame() {
+    private void saveGame() {
 
-        if(myframe.world.saveToFile()){
+        if(myframe.getWorld().saveToFile()){
             System.out.println("zapisano gre");
             loggingSpace.append(" zapisano gre\n");
         } else {
@@ -145,9 +147,9 @@ public class OptionPanel extends JPanel {
         }
 
     }
-    void loadGame() {
+    private void loadGame() {
 
-        if(myframe.world.loadFromFile())
+        if(myframe.getWorld().loadFromFile())
         {
             System.out.println("wczytano gre");
             loggingSpace.append(" wczytano gre\n");
@@ -155,43 +157,44 @@ public class OptionPanel extends JPanel {
             System.out.println("nie wczytano gry");
             loggingSpace.append(" nie wczytano gry\n");
         }
-        myframe.world.drawWorld(myframe);
+        myframe.getWorld().drawWorld(myframe);
 
 
 
     }
-    void startTurn() {
-        if(myframe.world.isGameOver) {
+    private void startTurn() {
+        if(myframe.getWorld().getIsGameOver()) {
             System.out.println("koniec gry");
             System.exit(0);
         }
 //        System.out.println("tura rozpoczeta");
-        loggingSpace.append(" \tTurn: " + (myframe.world.getTurn() + 1)+"\n");
-        myframe.world.playTurn(myframe);
+        loggingSpace.append(" \tTurn: " + (myframe.getWorld().getTurn() + 1)+"\n");
+        myframe.getWorld().playTurn(myframe);
 
 
-        System.out.println("\t\tTurn " + myframe.world.getTurn() + " recap:");
+        System.out.println("\t\tTurn " + myframe.getWorld().getTurn() + " recap:");
 //        myframe.world.getLogger().printLogs();
-        myframe.world.getLogger().printLogs(loggingSpace);
+        myframe.getWorld().getLogger().printLogs(loggingSpace);
 //        loggingSpace.append(" tura zakonczona\n");
         b5.setEnabled(true);
         b6.setEnabled(true);
         b7.setEnabled(true);
         b8.setEnabled(true);
+        if(IS_HEX){b9.setEnabled(true);b10.setEnabled(true);}
         b1.setEnabled(false);
     }
-    void specialAbility() {
+    private void specialAbility() {
         //TODO
 //        System.out.println("umiejetnosc");
 //        loggingSpace.append(" umiejetnosc\n");
 
-        if (myframe.world.cooldown <= 0) {
+        if (myframe.getWorld().cooldown <= 0) {
             System.out.println("ULTIMATE ABILITY IS ABOUT TO BE USED");
             loggingSpace.append(" ULTIMATE ABILITY IS ABOUT TO BE USED\n");
-            myframe.world.cooldown = 10;
+            myframe.getWorld().cooldown = 10;
         } else {
-            System.out.println("Ultimate cannot be used again for " + myframe.world.cooldown + " turns");
-            loggingSpace.append(" Ultimate cannot be used again for " + myframe.world.cooldown + " turns\n");
+            System.out.println("Ultimate cannot be used again for " + myframe.getWorld().cooldown + " turns");
+            loggingSpace.append(" Ultimate cannot be used again for " + myframe.getWorld().cooldown + " turns\n");
         }
 
     }
@@ -202,32 +205,32 @@ public class OptionPanel extends JPanel {
         b6.setEnabled(false);
         b7.setEnabled(false);
         b8.setEnabled(false);
+        if(IS_HEX){b9.setEnabled(false);b10.setEnabled(false);}
+
         String dirname= "";
         switch (dir) {
             case 1:
-                dirname = "S";
+                dirname = IS_HEX ? "D" : "D";
                 break;
             case 2:
-                dirname = "A";
+                dirname = IS_HEX ? "E" : "W";
                 break;
             case 3:
-                dirname = "W";
+                dirname = IS_HEX ? "Q" : "A";
                 break;
             case 4:
-                dirname = "D";
+                dirname = IS_HEX ? "A" : "S";
                 break;
             case 5:
-                dirname = "Q";
+                dirname = "W";
                 break;
             case 6:
-                dirname = "E";
+                dirname = "S";
                 break;
         }
 
-
-
         loggingSpace.append(" Chosen direction: "+dirname+"\n");
-        myframe.humandir = dir;
+        myframe.setHumandir(dir);
 
     }
 

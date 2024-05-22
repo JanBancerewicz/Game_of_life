@@ -4,12 +4,12 @@ import static game.Constants.*;
 
 
 public class Animal extends Organism {
-    protected void move(Point newpos) {
+    void move(Point newpos) {
         this.getParent().moveOrganism(this.getPosition(), newpos);
         this.setPosition(newpos);
     }
 
-    protected void movementAction(Point newpos) {
+    void movementAction(Point newpos) {
         String attackerinfo = this.getOrganismTypeName();
         String preyinfo = this.getParent().getOrganism(newpos).getOrganismTypeName();
 
@@ -56,7 +56,7 @@ public class Animal extends Organism {
     }
 
 
-    public Animal(Point position, char ascii, OrganismType organismType, int strength, int initiative) {
+    Animal(Point position, char ascii, OrganismType organismType, int strength, int initiative) {
         super(position, ascii, organismType, strength, initiative);
     }
 

@@ -5,9 +5,9 @@ import java.util.Objects;
 public abstract class Organism {
     private Point position;
     private int strength;
-    private int initiative;
-    private OrganismType organismType;
-    private char ascii;
+    private final int initiative;
+    private final OrganismType organismType;
+    private final char ascii;
     private int age;
     private World parent;
 

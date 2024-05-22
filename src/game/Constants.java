@@ -1,10 +1,10 @@
 package game;
 
 public class Constants {
-    // Constants for size of the grid
-    public static final boolean IS_HEX=false;
-    public static final int SIZE_X = 20;
-    public static final int SIZE_Y = 20;
+    // Constants for size of the grid, resizable
+    public static boolean IS_HEX = true;
+    public static int SIZE_X = 11;
+    public static int SIZE_Y = 11;
 
     // Constants for chances of actions
     public static final int CHANCE_OF_MOVEMENT_TURTLE = 25;
@@ -21,33 +21,5 @@ public class Constants {
     public static final boolean DETAILED_LOGGING_LIST = false;
     
     
-    // Constants for key inputs
-    public static final int KEY_ARROW_1 = 224;
 
-    public static final int KEY_ARROW_Q = 81;
-    public static final int KEY_ARROW_q = 113;
-
-    public static final int KEY_ARROW_E = 69;
-    public static final int KEY_ARROW_e = 101;
-
-    public static final int KEY_ARROW_UP = 87;
-    public static final int KEY_ARROW_up = 119;
-//    public static final int KEY_ARROW_UP = 72;
-    public static final int KEY_ARROW_DOWN = 83;
-    public static final int KEY_ARROW_down = 115;
-//    public static final int KEY_ARROW_DOWN = 80;
-    public static final int KEY_ARROW_LEFT = 65;
-    public static final int KEY_ARROW_left = 97;
-//    public static final int KEY_ARROW_LEFT = 75;
-    public static final int KEY_ARROW_RIGHT = 68;
-    public static final int KEY_ARROW_right = 100;
-//    public static final int KEY_ARROW_RIGHT = 77;
-    public static final int KEY_F = 70;
-    public static final int KEY_f = 102;
-    public static final int KEY_L = 76;
-    public static final int KEY_l = 108;
-    public static final int KEY_P = 80;
-    public static final int KEY_p = 112;
-    public static final int KEY_Q = 81;
-    public static final int KEY_q = 113;
 }

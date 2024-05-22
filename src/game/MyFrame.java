@@ -9,14 +9,32 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static game.Constants.IS_HEX;
+
 public class MyFrame extends JFrame implements ActionListener, KeyListener {
 
-    public World world;
-    public ArrayList<TileButton> tiles = new ArrayList<>();
-    public int globalItemIndex = 11;
+    private World world;
+    protected final ArrayList<TileButton> tiles = new ArrayList<>();
+    private int globalItemIndex = 11;
 
-    public int humandir = 0;
-    public OptionPanel op;
+    private int humandir = 0;
+    protected OptionPanel op;
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public int getHumandir() {
+        return humandir;
+    }
+
+    public void setHumandir(int humandir) {
+        this.humandir = humandir;
+    }
 
 
     public MyFrame() {
@@ -24,7 +42,7 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
         world.loadFromDefaultFile();
         world.getLogger().resetLogging();
 
-        this.setTitle("Imie nazwisko nr indeksu");
+        this.setTitle("World of Organisms");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setMinimumSize(new Dimension(600, 600));
@@ -35,13 +53,13 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
 
         this.getContentPane().setBackground(new Color(25, 116, 51));
 
-        generateBoard(Constants.SIZE_X, Constants.SIZE_Y, Constants.IS_HEX);
+        generateBoard(Constants.SIZE_X, Constants.SIZE_Y);
         this.requestFocus();
         this.addKeyListener(this);
         this.setVisible(true);
     }
 
-    void generateBoard(int sizeX, int sizeY, boolean isHex)
+    private void generateBoard(int sizeX, int sizeY)
     {
         for(int i=0; i<sizeX; i++)
         {
@@ -51,10 +69,11 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
                 tile.addActionListener(this);
 
 
-                tiles.add(tile);
-                this.add(tile);
+                tiles.add(tile); // lista przyciskow (do pozniejszej iteracji)
+                this.add(tile); // dodanie przycisku do frame
             }
         }
+
 
     }
 
@@ -71,32 +90,32 @@ public class MyFrame extends JFrame implements ActionListener, KeyListener {
             switch(e.getKeyChar()) {
                 case 'w':
                 case 'W':
-                    humandir = 3;
+                    humandir = IS_HEX ? 5 : 2;
                     break;
                 case 'a':
                 case 'A':
-                    humandir = 2;
+                    humandir = IS_HEX ? 4 : 3;
                     break;
                 case 's':
                 case 'S':
-                    humandir = 1;
+                    humandir = IS_HEX ? 6 : 4;
                     break;
                 case 'd':
                 case 'D':
-                    humandir = 4;
+                    humandir = 1;
                     break;
                 case 'q':
                 case 'Q':
-                    if(Constants.IS_HEX){
-                        humandir = 5;
+                    if(IS_HEX){
+                        humandir = 3;
                     }else{
                         humandir = 0;
                     }
                     break;
                 case 'e':
                 case 'E':
-                    if(Constants.IS_HEX){
-                        humandir = 6;
+                    if(IS_HEX){
+                        humandir = 2;
                     }else{
                         humandir = 0;
                     }
