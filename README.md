@@ -30,25 +30,27 @@ To run this application, ensure you have Java Development Kit (JDK) installed on
 
 2. **Compile the application**:
 
-```sh
-javac -d bin src/com/Game_of_life/*.java
-```
+   ```sh
+   javac -d bin src/com/Game_of_life/*.java
+   ```
 
 3. **Run the application**:
 
-```sh
-java -cp bin com.Game_of_life.Main
-```
+   ```sh
+   java -cp bin com.Game_of_life.Main
+   ```
 
 ## Usage
 1. **Starting the Application**:
 
 - Run the application using the command above.
 - The main window will appear with an empty grid.
+- 
 2. **Setting Up the Grid**:
 
 - Click on the grid cells to toggle between alive (black) and dead (white) states.
 - Use the "Clear" button to reset the grid to all dead cells.
+- 
 3. **Simulation Control**:
 
 - Click "Start" to begin the simulation.
@@ -56,4 +58,4 @@ java -cp bin com.Game_of_life.Main
 - Click "Reset" to stop the simulation and clear the grid.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE]LICENSE file for details.
+This project is licensed under the MIT License. See the [License](LICENSE) file for details.
