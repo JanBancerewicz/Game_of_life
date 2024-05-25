@@ -23,16 +23,15 @@ The Game of Life is a simple simulator game, played on a grid of square or hexag
 To run this application, ensure you have Java Development Kit (JDK) installed on your system.
 
 1. **Clone the repository**:
-   ```sh
+```sh
    git clone https://github.com/JanBancerewicz/Game_of_life.git
-  ```
-
+```
 
 2. **Compile the application**:
 
-   ```sh
+```sh
    javac -d bin src/com/Game_of_life/*.java
-   ```
+```
 
 3. **Run the application**:
 
