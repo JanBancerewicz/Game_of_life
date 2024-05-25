@@ -24,19 +24,19 @@ To run this application, ensure you have Java Development Kit (JDK) installed on
 
 1. **Clone the repository**:
 ```sh
-   git clone https://github.com/JanBancerewicz/Game_of_life.git
+    git clone https://github.com/JanBancerewicz/Game_of_life.git
 ```
 
 2. **Compile the application**:
 
 ```sh
-   javac -d bin src/com/Game_of_life/*.java
+    javac -d bin src/com/Game_of_life/*.java
 ```
 
 3. **Run the application**:
 
    ```sh
-   java -cp bin com.Game_of_life.Main
+    java -cp bin com.Game_of_life.Main
    ```
 
 ## Usage
