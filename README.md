@@ -35,9 +35,9 @@ To run this application, ensure you have Java Development Kit (JDK) installed on
 
 3. **Run the application**:
 
-   ```sh
+```sh
     java -cp bin com.Game_of_life.Main
-   ```
+```
 
 ## Usage
 1. **Starting the Application**:
