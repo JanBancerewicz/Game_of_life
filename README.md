@@ -16,7 +16,6 @@ The Game of Life is a simple simulator game, played on a grid of square or hexag
 - **Interactive Human Organism**: Allows the player to traverse the map, eat the other organisms.
 - **Logger**: It helps to keep a track on the events that occurred during the turn.
 - **Special Ability**: Can be used to destroy everything around human, continuously for five turns.
-- 
 
 ## Installation
 
@@ -41,20 +40,20 @@ To run this application, ensure you have Java Development Kit (JDK) installed on
 
 ## Usage
 1. **Starting the Application**:
-
 - Run the application using the command above.
-- The main window will appear with an empty grid.
-- 
+- The prompt window will appear with an empty grid.
+  
 2. **Setting Up the Grid**:
+- Choose the board type (hex/normal).
+- Type the window size to the command prompt.
+- Start the game.
 
-- Click on the grid cells to toggle between alive (black) and dead (white) states.
-- Use the "Clear" button to reset the grid to all dead cells.
-- 
 3. **Simulation Control**:
-
-- Click "Start" to begin the simulation.
-- Click "Pause" to pause the simulation.
-- Click "Reset" to stop the simulation and clear the grid.
+- Click on an empty cell to spawn a chosen organism.
+- Choose a direction of human movement. 
+- Click "Special Ability" button to activate the flames around the human.
+- Save and load the game state into the savefile.
+- Enjoy the game!
 
 ## License
 This project is licensed under the MIT License. See the [License](LICENSE) file for details.
