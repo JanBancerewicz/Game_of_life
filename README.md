@@ -8,6 +8,10 @@ The Game of Life is a simple simulator game, played on a grid of square or hexag
 - When 2 organisms collide, the stronger one consumes the weaker one.
 - There is exacly 1 human on the map, controlled by player, so they can interact with the virtual world.
 
+## Visualization
+
+![Image](https://github.com/user-attachments/assets/e733e254-9010-4a14-9128-3ccf30346c36)
+
 ## Features
 
 - **Graphical User Interface (GUI)**: Built using Java Swing, the application provides an intuitive interface to interact with the Game of Life.
